@@ -14,13 +14,13 @@ const FormPage = () => {
                 </div>
                 <div className="w-full">
                     <iframe
-                        src="https://docs.google.com/forms/d/e/1FAIpQLScbeKTkSukQRsfRP3f8Udm1a4K5Dq72LE2h-sebeQgxVJ9nbQ/viewform?embedded=true"
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSdyhSmXV1WWKJ5m41zQ0lRh683Fny6zW73H-GnerGxTUKObrQ/viewform?embedded=true"
                         width="100%"
                         height="900"
                         className="border-0 w-full rounded-xl"
                         allowFullScreen
                         loading="lazy"
-                        title="GRMR Sign Up Form"
+                        title="GRMR Feedback Form"
                     >
                         Loading…
                     </iframe>
@@ -31,3 +31,4 @@ const FormPage = () => {
 }
 
 export default FormPage
+2

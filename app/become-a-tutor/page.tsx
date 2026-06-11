@@ -14,7 +14,7 @@ const BecomeATutor = () => {
                 </div>
                 <div className="w-full">
                     <iframe
-                        src="https://docs.google.com/forms/d/1VMKFanLMchOOyeCp02gJdSPUVcFHIkJTidGvEwkMb8k/viewform?embedded=true"
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSdE1QfjVNQDadUtlfPge14ZXKTv6SXs59FM4mmqQ0ZvgaSVNQ/viewform?usp=dialog"
                         width="100%"
                         height="900"
                         className="border-0 w-full rounded-xl"

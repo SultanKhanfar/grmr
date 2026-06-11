@@ -23,6 +23,26 @@ type GradeBand = {
   lessons: Lesson[];
 };
 
+const getSlidePreviewImageUrl = (presentationUrl: string) => {
+  const presentationId = presentationUrl.match(
+    /docs\.google\.com\/presentation\/d\/([^/]+)/,
+  )?.[1];
+
+  return presentationId
+    ? `https://docs.google.com/presentation/d/${presentationId}/export/png`
+    : null;
+};
+
+const getSlideOpenUrl = (presentationUrl: string) => {
+  const presentationId = presentationUrl.match(
+    /docs\.google\.com\/presentation\/d\/([^/]+)/,
+  )?.[1];
+
+  return presentationId
+    ? `https://docs.google.com/presentation/d/${presentationId}/export/pdf`
+    : presentationUrl;
+};
+
 export default function MathLessonsPage() {
   const gradeBands: GradeBand[] = [
     {
@@ -825,7 +845,7 @@ export default function MathLessonsPage() {
     <main className="w-full px-4 py-10 md:py-14">
       <section className="max-w-7xl mx-auto space-y-10">
         <div className="text-center">
-          <div className="inline-flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm px-8 py-7 rounded-3xl shadow-lg border border-gray-100 max-w-4xl">
+          <div className="flex w-full flex-col items-center justify-center rounded-3xl border border-white/70 bg-white/70 p-7 shadow-lg backdrop-blur-sm md:p-10">
             <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-100 via-indigo-100 to-purple-100 px-4 py-1.5 mb-4">
               <Sparkles className="w-4 h-4 text-primary" />
               <span className="text-sm font-semibold text-primary">
@@ -845,9 +865,19 @@ export default function MathLessonsPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[280px_minmax(0,1fr)] gap-6 lg:gap-8">
           <aside className="lg:sticky lg:top-24 lg:self-start">
-            <div className="rounded-2xl bg-white/80 backdrop-blur-sm border border-gray-100 shadow-sm p-3">
+            <div className="rounded-3xl border border-white/70 bg-white/80 p-5 shadow-lg backdrop-blur-sm">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="rounded-xl bg-primary/10 p-2 text-primary">
+                  <Calculator className="h-5 w-5" />
+                </div>
+                <div>
+                  <h2 className="font-semibold text-gray-900">Grade bands</h2>
+                  <p className="text-sm text-gray-500">Choose a level</p>
+                </div>
+              </div>
+
               <div className="space-y-2">
                 {gradeBands.map((band) => {
                   const isActive = band.label === activeBand.label;
@@ -922,7 +952,7 @@ export default function MathLessonsPage() {
                       <div className="flex flex-wrap gap-3">
                         {lesson.powerpointUrl !== "#" && (
                           <Link
-                            href={lesson.powerpointUrl}
+                            href={getSlideOpenUrl(lesson.powerpointUrl)}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-3 text-white font-semibold hover:bg-primary/90 transition-colors"
@@ -948,15 +978,27 @@ export default function MathLessonsPage() {
                     </div>
 
                     <div className="border-t xl:border-t-0 xl:border-l border-gray-100 bg-gradient-to-br from-white to-gray-50 p-5 md:p-6">
-                      <div className="h-full rounded-2xl overflow-hidden border border-gray-200 shadow-sm bg-white">
+                      <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-sm bg-white">
                         <div className="aspect-video w-full">
                           {lesson.powerpointEmbedUrl !== "#" ? (
-                            <iframe
-                              className="w-full h-full"
-                              src={lesson.powerpointEmbedUrl}
-                              title={`${lesson.title} lesson deck`}
-                              allowFullScreen
-                            />
+                            <Link
+                              href={getSlideOpenUrl(lesson.powerpointUrl)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block h-full bg-gray-100"
+                              aria-label={`Open the ${lesson.title} lesson deck`}
+                            >
+                              <img
+                                className="h-full w-full object-cover object-top"
+                                src={
+                                  getSlidePreviewImageUrl(
+                                    lesson.powerpointEmbedUrl,
+                                  ) ?? ""
+                                }
+                                alt={`First slide of the ${lesson.title} lesson deck`}
+                                loading="lazy"
+                              />
+                            </Link>
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-center px-6 text-sm text-gray-500 bg-white">
                               Lesson deck preview coming soon.

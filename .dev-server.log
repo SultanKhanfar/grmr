@@ -1,0 +1,27 @@
+
+> grmr@0.1.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.3.8 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://10.15.179.68:3000
+
+ ✓ Starting...
+Creating turbopack project { dir: 'C:\\Users\\sultan.khanfar\\GRMR Website', testMode: true }
+ ✓ Ready in 834ms
+ ○ Compiling /lessons/english ...
+ ✓ Compiled /lessons/english in 1198ms
+ GET /lessons/english 200 in 1429ms
+ ✓ Compiled /lessons/math in 352ms
+ GET /lessons/math 200 in 439ms
+ GET /lessons/english 200 in 130ms
+ GET /lessons/math 200 in 123ms
+ GET /lessons/math 200 in 126ms
+ ✓ Compiled /favicon.ico in 225ms
+ GET /favicon.ico?favicon.6b3c65bf.ico 200 in 501ms
+ GET /lessons/english 200 in 50ms
+ GET /lessons/math 200 in 49ms
+ ✓ Compiled in 93ms
+ ✓ Compiled in 109ms
+ GET /lessons/english 200 in 379ms
+ ✓ Compiled in 94ms
