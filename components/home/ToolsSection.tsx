@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react'
 import Link from 'next/link'
-import { ClipboardCheck, Accessibility, FileText, Settings } from 'lucide-react'
+import { ClipboardCheck, Accessibility, FileText } from 'lucide-react'
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useGSAP } from "@gsap/react"
@@ -15,19 +15,19 @@ const tools = [
     title: 'Diagnostic Tests',
     icon: <ClipboardCheck className="w-8 h-8" />,
     description: 'Quickly assess skill levels and identify growth areas with targeted questions.',
-    href: '/resources/diagnostic-tests'
+    href: '/resources?view=diagnostic'
   },
   {
     title: 'Accessibility Tools',
     icon: <Accessibility className="w-8 h-8" />,
     description: 'Support tools for learners of all abilities — designed to improve confidence.',
-    href: '/resources/accessibility'
+    href: '/resources?view=accessibility'
   },
   {
     title: 'Extra Resources',
     icon: <FileText className="w-8 h-8" />,
     description: 'Additional platforms and tools to extend learning and support enrichment.',
-    href: '/resources/templates'
+    href: '/resources?view=templates'
   },
 ]
 

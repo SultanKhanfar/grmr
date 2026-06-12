@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Book, UserPlus } from "lucide-react"
-import FinisherHeader from "@/components/FinisherHeader"
 import { gsap } from "gsap"
 import { useGSAP } from "@gsap/react"
 

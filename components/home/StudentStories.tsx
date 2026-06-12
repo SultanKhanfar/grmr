@@ -163,7 +163,7 @@ const StudentStories = () => {
                                 )}
                             >
                                 <blockquote className="text-2xl md:text-3xl italic mb-6 text-gray-700 leading-relaxed">
-                                    "{student.testimonial}"
+                                    &ldquo;{student.testimonial}&rdquo;
                                 </blockquote>
                                 <div className="flex flex-col">
                                     <span className="font-bold text-2xl text-primary">{student.name}</span>

@@ -31,4 +31,3 @@ const FormPage = () => {
 }
 
 export default FormPage
-2

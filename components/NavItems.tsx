@@ -88,7 +88,9 @@ const NavItems = ({ mobile = false }: { mobile?: boolean }) => {
 						>
 							<Link
 								href={href}
-								ref={(el) => (itemRefs.current[label] = el)}
+								ref={(el) => {
+									itemRefs.current[label] = el
+								}}
 								className={cn(
 									'group relative flex items-center text-base text-primary transition-all duration-300',
 									isActive ? 'font-extrabold' : 'font-medium'

@@ -65,7 +65,7 @@ const ContactSection = () => {
                     <div className="text-center mb-8">
                         <h2 className="text-3xl font-bold text-primary">Still Have Questions?</h2>
                         <p className="text-gray-600 mt-2">
-                            We're here to help. Send us a message and we'll get back to you as soon as possible.
+                            We&apos;re here to help. Send us a message and we&apos;ll get back to you as soon as possible.
                         </p>
                     </div>
 

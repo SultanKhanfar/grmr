@@ -2,13 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import {
-  BookOpen,
-  ExternalLink,
-  FileText,
-  PlayCircle,
-  Sparkles,
-} from "lucide-react";
+import { BookOpen, FileText, Sparkles } from "lucide-react";
 
 type LessonFormat = "slides" | "powerpoint" | "pdf";
 
@@ -37,71 +31,7 @@ const getLessonUrl = ({ fileId, format }: Lesson) =>
 const getPreviewImageUrl = ({ fileId, format }: Lesson) =>
   format === "slides"
     ? `https://docs.google.com/presentation/d/${fileId}/export/png`
-    : `https://drive.google.com/thumbnail?id=${fileId}&sz=w1200`;
-
-const getKhanAcademyUrl = ({ title, benchmark }: Lesson) => {
-  const topic = title.toLowerCase();
-
-  if (benchmark.includes(".R.")) {
-    if (/ELA\.(K|1)\./.test(benchmark)) {
-      return "https://www.khanacademy.org/ela/cc-1st-reading-vocab";
-    }
-
-    if (/ELA\.(2|3)\./.test(benchmark)) {
-      return "https://www.khanacademy.org/ela/cc-3rd-reading-vocab";
-    }
-
-    return "https://www.khanacademy.org/ela/cc-5th-reading-vocab";
-  }
-
-  if (
-    topic.includes("comma") ||
-    topic.includes("apostrophe") ||
-    topic.includes("quotation")
-  ) {
-    return "https://www.khanacademy.org/humanities/grammar/punctuation-the-comma-and-the-apostrophe";
-  }
-
-  if (topic.includes("semicolon")) {
-    return "https://www.khanacademy.org/humanities/grammar/punctuation-the-colon-semicolon-and-more";
-  }
-
-  if (topic.includes("interjection")) {
-    return "https://www.khanacademy.org/humanities/grammar/parts-of-speech-the-interjection";
-  }
-
-  if (topic.includes("modifier")) {
-    return "https://www.khanacademy.org/humanities/grammar/parts-of-speech-the-modifier";
-  }
-
-  if (topic.includes("preposition")) {
-    return "https://www.khanacademy.org/humanities/grammar/parts-of-speech-the-preposition-and-the-conjunction";
-  }
-
-  if (
-    topic.includes("sentence") ||
-    topic.includes("conjunction") ||
-    topic.includes("appositive") ||
-    topic.includes("clause") ||
-    topic.includes("subject-verb")
-  ) {
-    return "https://www.khanacademy.org/humanities/grammar/syntax-sentences-and-clauses";
-  }
-
-  if (topic.includes("verb") || topic.includes("voice and mood")) {
-    return "https://www.khanacademy.org/humanities/grammar/parts-of-speech-the-verb";
-  }
-
-  if (
-    topic.includes("noun") ||
-    topic.includes("pronoun") ||
-    topic.includes("capitalization")
-  ) {
-    return "https://www.khanacademy.org/humanities/grammar/parts-of-speech-the-noun";
-  }
-
-  return "https://www.khanacademy.org/humanities/grammar/usage-and-style";
-};
+    : `/lessons/english-previews/${fileId}.png`;
 
 const gradeBands: GradeBand[] = [
   {
@@ -485,8 +415,8 @@ export default function EnglishLessonsPage() {
             </h1>
             <p className="mt-3 max-w-3xl text-base leading-8 text-gray-600 md:text-lg">
               Explore standards-aligned grammar and writing lessons organized by
-              grade band. Open any deck as a PDF or use its Khan Academy
-              resource for additional practice and review.
+              grade band. Open any lesson deck as a PDF for instruction,
+              practice, and review.
             </p>
           </div>
 
@@ -581,7 +511,7 @@ export default function EnglishLessonsPage() {
                             {lesson.description}
                           </p>
 
-                          <div className="flex flex-wrap gap-3">
+                          <div>
                             <Link
                               href={lessonUrl}
                               target="_blank"
@@ -590,17 +520,6 @@ export default function EnglishLessonsPage() {
                             >
                               <FileText className="h-4 w-4" />
                               Open Lesson Deck
-                            </Link>
-
-                            <Link
-                              href={getKhanAcademyUrl(lesson)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 rounded-xl border border-primary/20 bg-white px-4 py-3 font-semibold text-primary transition-colors hover:bg-primary/5"
-                            >
-                              <PlayCircle className="h-4 w-4" />
-                              Watch Khan Academy Videos
-                              <ExternalLink className="h-4 w-4" />
                             </Link>
                           </div>
                         </div>

@@ -14,7 +14,6 @@ gsap.registerPlugin(ScrollTrigger)
 type FilterKey = '' | 'diagnostic' | 'accessibility' | 'templates'
 
 // Panels from components/
-const DiagnosticPanel = dynamic(() => import('@/components/resources/DiagnosticPanel'), { ssr: false })
 const AccessibilityPanel = dynamic(() => import('@/components/resources/AccessibilityPanel'), { ssr: false })
 const TemplatesPanel = dynamic(() => import('@/components/resources/TemplatesPanel'), { ssr: false })
 
@@ -65,7 +64,7 @@ function ResourcesContent() {
 		if (view === 'diagnostic' || view === 'accessibility' || view === 'templates') {
 			setActiveFilter(view)
 		}
-	}, [])
+	}, [search])
 
 	const handleFilter = (value: FilterKey) => {
 		const next = activeFilter === value ? '' : value
@@ -137,7 +136,7 @@ function ResourcesContent() {
 						<div className="flex flex-col items-center justify-center py-24 px-6 text-center">
 							<h2 className="text-3xl font-bold text-primary mb-4">Diagnostic Tests</h2>
 							<p className="text-gray-700 text-lg mb-6 max-w-xl">
-								We're hard at work developing personalized diagnostic tools to help identify learning strengths and areas for growth. 
+								We&apos;re hard at work developing personalized diagnostic tools to help identify learning strengths and areas for growth.
 								Check back soon!
 							</p>
 							<span className="inline-flex items-center gap-2 bg-[#f3e8ff] text-[#86198f] font-semibold px-5 py-2.5 rounded-full border border-[#d8b4fe] shadow-sm">

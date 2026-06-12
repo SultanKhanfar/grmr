@@ -3,11 +3,38 @@
 import { useEffect } from 'react'
 import Script from 'next/script'
 
+type FinisherHeaderConstructor = new (options: {
+    count: number
+    size: { min: number; max: number; pulse: number }
+    speed: {
+        x: { min: number; max: number }
+        y: { min: number; max: number }
+    }
+    colors: {
+        background: string
+        particles: string[]
+    }
+    blending: string
+    opacity: { center: number; edge: number }
+    skew: number
+    shapes: string[]
+}) => unknown
+
+declare global {
+    interface Window {
+        FinisherHeader?: FinisherHeaderConstructor
+    }
+}
+
 const FinisherHeader = () => {
     useEffect(() => {
+        let retryTimer: ReturnType<typeof setTimeout> | undefined
+
         const init = () => {
-            if (typeof window !== 'undefined' && (window as any).FinisherHeader && document.querySelector('.finisher-header')) {
-                new (window as any).FinisherHeader({
+            const container = document.querySelector<HTMLElement>('.finisher-header')
+
+            if (window.FinisherHeader && container) {
+                new window.FinisherHeader({
                     count: 100,
                     size: { min: 2, max: 40, pulse: 0 },
                     speed: { x: { min: 0, max: 0.4 }, y: { min: 0, max: 0.1 } },
@@ -21,11 +48,15 @@ const FinisherHeader = () => {
                     shapes: ['c', 's', 't'],
                 })
             } else {
-                setTimeout(init, 100)
+                retryTimer = setTimeout(init, 100)
             }
         }
 
         init()
+
+        return () => {
+            if (retryTimer) clearTimeout(retryTimer)
+        }
     }, [])
 
     return (

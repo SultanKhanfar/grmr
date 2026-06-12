@@ -22,11 +22,11 @@ const images = [
 
 const About = () => {
     const [currentImage, setCurrentImage] = useState(0)
-    const aboutRef = useRef(null)
-    const missionRef = useRef(null)
-    const impactRef = useRef(null)
-    const statsRef = useRef(null)
-    const carouselRef = useRef(null)
+    const aboutRef = useRef<HTMLDivElement | null>(null)
+    const missionRef = useRef<HTMLDivElement | null>(null)
+    const impactRef = useRef<HTMLDivElement | null>(null)
+    const statsRef = useRef<HTMLDivElement | null>(null)
+    const carouselRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -89,24 +89,25 @@ const About = () => {
             }
         )
 
-        // Stats animation with stagger
-        gsap.fromTo(
-            statsRef.current.children,
-            { opacity: 0, y: 20 },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                stagger: 0.15,
-                delay: 0.5,
-                ease: "back.out(1.7)",
-                scrollTrigger: {
-                    trigger: statsRef.current,
-                    start: "top 90%",
-                    toggleActions: "play none none none",
-                },
-            }
-        )
+        if (statsRef.current) {
+            gsap.fromTo(
+                statsRef.current.children,
+                { opacity: 0, y: 20 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    delay: 0.5,
+                    ease: "back.out(1.7)",
+                    scrollTrigger: {
+                        trigger: statsRef.current,
+                        start: "top 90%",
+                        toggleActions: "play none none none",
+                    },
+                }
+            )
+        }
 
         // Carousel animation
         gsap.fromTo(
